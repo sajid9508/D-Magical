@@ -1,0 +1,99 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Sign Up | 'D' MAGICAL Family Salon{% endblock %}
+
+{% block content %}
+<section class="py-20 flex items-center justify-center min-h-[75vh] px-4">
+    <div class="max-w-md w-full bg-brand-card/30 backdrop-blur-xl border border-brand-border p-8 rounded-2xl shadow-2xl relative overflow-hidden animate-fade-in-up">
+        
+        <!-- Decorative background glows -->
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-brand-golddark/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center space-y-2 mb-8">
+            <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold block">Create Account</span>
+            <h2 class="text-3xl font-serif font-bold text-white">Join The Magic</h2>
+            <p class="text-slate-400 text-xs font-light">
+                Register with your Email, Phone number, and Password
+            </p>
+        </div>
+
+        <form method="POST" class="space-y-5 relative z-10">
+            {% csrf_token %}
+            
+            <!-- Username Input -->
+            <div class="space-y-1.5">
+                <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-regular fa-user mr-1.5 text-brand-gold"></i> Username
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <p class="text-red-400 text-xs mt-0.5">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Email Input -->
+            <div class="space-y-1.5">
+                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-regular fa-envelope mr-1.5 text-brand-gold"></i> Email Address
+                </label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <p class="text-red-400 text-xs mt-0.5">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Phone Number Input -->
+            <div class="space-y-1.5">
+                <label for="{{ form.phone_number.id_for_label }}" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-solid fa-phone mr-1.5 text-brand-gold"></i> Phone Number
+                </label>
+                {{ form.phone_number }}
+                {% if form.phone_number.errors %}
+                <p class="text-red-400 text-xs mt-0.5">{{ form.phone_number.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Password Input -->
+            <div class="space-y-1.5">
+                <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-solid fa-lock mr-1.5 text-brand-gold"></i> Password
+                </label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <p class="text-red-400 text-xs mt-0.5">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="space-y-1.5">
+                <label for="{{ form.confirm_password.id_for_label }}" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-solid fa-circle-check mr-1.5 text-brand-gold"></i> Confirm Password
+                </label>
+                {{ form.confirm_password }}
+                {% if form.confirm_password.errors %}
+                <p class="text-red-400 text-xs mt-0.5">{{ form.confirm_password.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold py-3.5 rounded-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+
+        <!-- Redirect to Login -->
+        <div class="mt-6 text-center text-xs text-slate-500 relative z-10">
+            <p>
+                Already have an account? 
+                <a href="{% url 'login' %}" class="text-brand-gold hover:text-brand-goldlight font-semibold transition-colors ml-1">
+                    Sign In
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}'D' MAGICAL Family Salon | Premium Hair, Beauty & Grooming, Bangalore{% endblock %}</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="{% block meta_description %}Welcome to 'D' MAGICAL Family Salon in Basavanagara, Bangalore. We offer premium hair styling, professional facials, soothing spa therapies, nail art, and elite bridal/groom makeup services. Book your slot today!{% endblock %}">
+    <meta name="keywords" content="salon, family salon, Bangalore salon, Basavanagara beauty parlour, hair cutting Bangalore, bridal makeup Bangalore, spa Basavanagara, beauty treatment">
+    <meta name="author" content="'D' MAGICAL Family Salon">
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',       /* Premium Metallic Gold */
+                            goldlight: '#F3E5AB',  /* Light Gold */
+                            golddark: '#AA7C11',   /* Dark Gold */
+                            dark: '#0B0F19',       /* Deep Navy/Black */
+                            card: '#161F30',       /* Lighter slate for cards */
+                            border: '#1E293B',     /* Slate border */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+    
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border transition-all duration-300">
+        <div class="max-content-width max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="{% url 'home' %}" class="flex items-center space-x-2">
+                        <span class="text-2xl font-serif font-bold tracking-wider text-brand-gold">
+                            'D' <span class="text-slate-100 font-sans font-medium text-xl">MAGICAL</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-6 items-center text-sm font-medium">
+                    <a href="{% url 'home' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2">Home</a>
+                    <a href="{% url 'services' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2">Services</a>
+                    <a href="{% url 'booking' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2">Book Appointment</a>
+                    <a href="{% url 'contact' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2">Contact Us</a>
+                    {% if user.is_authenticated %}
+                        <span class="text-xs text-brand-gold font-light"><i class="fa-regular fa-user mr-1"></i> Hello, {{ user.username }}</span>
+                        <a href="{% url 'dashboard' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2 text-xs uppercase tracking-wider bg-brand-border px-3 py-1.5 rounded-lg border border-slate-700/50 hover:border-brand-gold">Dashboard</a>
+                        <a href="{% url 'logout' %}" class="text-slate-300 hover:text-red-400 transition-colors duration-200 py-2 text-xs uppercase tracking-wider">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="text-slate-300 hover:text-brand-gold transition-colors duration-200 py-2 text-xs uppercase tracking-wider bg-brand-border px-3 py-1.5 rounded-lg border border-slate-700/50 hover:border-brand-gold">Login</a>
+                    {% endif %}
+                </nav>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="{% url 'booking' %}" class="bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-semibold px-5 py-2.5 rounded-full hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                        Book Now
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-400 hover:text-slate-100 focus:outline-none" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-brand-border">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center">
+                <a href="{% url 'home' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all">Home</a>
+                <a href="{% url 'services' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all">Services</a>
+                <a href="{% url 'booking' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all">Book Appointment</a>
+                <a href="{% url 'contact' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all">Contact Us</a>
+                {% if user.is_authenticated %}
+                    <span class="block px-3 py-2 text-xs text-brand-gold font-light"><i class="fa-regular fa-user mr-1"></i> Hello, {{ user.username }}</span>
+                    <a href="{% url 'dashboard' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all text-xs uppercase tracking-widest text-brand-gold">Dashboard</a>
+                    <a href="{% url 'logout' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-350 hover:bg-brand-border hover:text-red-400 transition-all text-xs uppercase tracking-widest">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="block px-3 py-3 rounded-md text-base font-medium text-slate-300 hover:bg-brand-border hover:text-brand-gold transition-all text-xs uppercase tracking-widest text-brand-gold">Login</a>
+                {% endif %}
+                <a href="{% url 'booking' %}" class="mt-4 block w-full bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-semibold py-3 rounded-md transition-all">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Message Alerts (Django messages framework) -->
+    {% if messages %}
+    <div class="max-w-4xl mx-auto px-4 mt-4 w-full">
+        {% for message in messages %}
+        <div class="flex items-center p-4 rounded-lg border {% if message.tags == 'success' %}bg-green-950/60 border-green-500 text-green-200{% elif message.tags == 'error' %}bg-red-950/60 border-red-500 text-red-200{% else %}bg-blue-950/60 border-blue-500 text-blue-200{% endif %} shadow-lg transition-all transform duration-300" role="alert">
+            <i class="{% if message.tags == 'success' %}fa-solid fa-circle-check text-green-400{% elif message.tags == 'error' %}fa-solid fa-triangle-exclamation text-red-400{% else %}fa-solid fa-circle-info text-blue-400{% endif %} text-lg mr-3"></i>
+            <span class="font-medium text-sm">{{ message }}</span>
+            <button class="ml-auto text-slate-400 hover:text-slate-100" onclick="this.parentElement.remove()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/80 border-t border-brand-border text-slate-400 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Branding column -->
+                <div class="col-span-1 md:col-span-1">
+                    <span class="text-2xl font-serif font-bold tracking-wider text-brand-gold block mb-4">'D' MAGICAL</span>
+                    <p class="text-sm leading-relaxed mb-4">
+                        Experience the magic of luxury styling and premium self-care. We are dedicated to providing the finest hair, beauty, and spa services in Bangalore.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-brand-gold transition-colors"><i class="fa-brands fa-facebook text-lg"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-brand-gold transition-colors"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Hours column -->
+                <div>
+                    <h3 class="text-slate-100 font-semibold mb-4 tracking-wider uppercase text-xs">Operating Hours</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between">
+                            <span>Monday - Friday</span>
+                            <span class="text-slate-200">10:00 AM - 08:30 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Saturday - Sunday</span>
+                            <span class="text-slate-200">09:00 AM - 09:00 PM</span>
+                        </li>
+                        <li class="border-t border-slate-800 pt-2 flex justify-between text-brand-gold">
+                            <span>Weekly Off</span>
+                            <span>Tuesday</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick links -->
+                <div>
+                    <h3 class="text-slate-100 font-semibold mb-4 tracking-wider uppercase text-xs">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'home' %}" class="hover:text-brand-gold transition-colors">Home</a></li>
+                        <li><a href="{% url 'services' %}" class="hover:text-brand-gold transition-colors">Services & Pricing</a></li>
+                        <li><a href="{% url 'booking' %}" class="hover:text-brand-gold transition-colors">Book Appointment</a></li>
+                        <li><a href="{% url 'contact' %}" class="hover:text-brand-gold transition-colors">Contact Us</a></li>
+                        <li><a href="{% url 'dashboard' %}" class="hover:text-brand-gold transition-colors">Owner Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact column -->
+                <div>
+                    <h3 class="text-slate-100 font-semibold mb-4 tracking-wider uppercase text-xs">Our Salon</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-gold mr-3"></i>
+                            <span>Basavanagara Main Road, near Vibgyor High School, Basavanagara, Bangalore - 560037</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-gold mr-3"></i>
+                            <a href="tel:9740637692" class="hover:text-brand-gold transition-colors">97406 37692</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope text-brand-gold mr-3"></i>
+                            <span>info@dmagicalsalon.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-xs flex flex-col sm:flex-row justify-between items-center">
+                <p>&copy; 2026 'D' MAGICAL Family Salon. All rights reserved.</p>
+                <div class="mt-2 sm:mt-0 space-x-4 text-slate-500">
+                    <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                    <span>&bull;</span>
+                    <a href="#" class="hover:text-slate-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vanilla Javascript -->
+    <script src="{% static 'salon/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

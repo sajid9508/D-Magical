@@ -1,0 +1,91 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Our Services & Pricing | 'D' MAGICAL Family Salon{% endblock %}
+
+{% block content %}
+<!-- Subheader Banner -->
+<section class="py-12 bg-gradient-to-b from-brand-card/40 to-transparent border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl sm:text-5xl font-serif font-bold text-white mb-3">Services & Pricing Menu</h1>
+        <p class="max-w-xl mx-auto text-slate-400 text-sm sm:text-base font-light">
+            Indulge in a premium service curated by our master stylists. Discover our range of haircuts, skin therapies, relaxing massages, and makeup solutions.
+        </p>
+    </div>
+</section>
+
+<!-- Categorized Services Section -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {% if grouped_services %}
+        <div class="space-y-16">
+            {% for category, services in grouped_services.items %}
+            <div class="space-y-6">
+                <!-- Category Heading -->
+                <div class="flex items-center space-x-4">
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-brand-gold tracking-wide">{{ category }}</h2>
+                    <div class="h-[1px] bg-slate-800 flex-grow"></div>
+                </div>
+
+                <!-- Service Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for service in services %}
+                    <div class="bg-brand-card/30 rounded-xl overflow-hidden border border-slate-850 hover:border-brand-gold/30 transition-all duration-300 flex flex-col justify-between group">
+                        <div class="p-6">
+                            <!-- Header Info -->
+                            <div class="flex justify-between items-start mb-3 space-x-2">
+                                <h3 class="font-serif font-semibold text-slate-100 group-hover:text-brand-gold transition-colors text-lg">
+                                    {{ service.name }}
+                                </h3>
+                                <span class="text-brand-gold font-bold text-lg whitespace-nowrap">₹{{ service.price|floatformat:0 }}</span>
+                            </div>
+                            
+                            <!-- Duration & Details -->
+                            <div class="flex items-center space-x-3 text-xs text-slate-500 mb-4">
+                                <span><i class="fa-regular fa-clock text-brand-gold mr-1"></i> {{ service.duration_minutes }} Mins</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-sm text-slate-400 leading-relaxed font-light line-clamp-3">
+                                {{ service.description }}
+                            </p>
+                        </div>
+                        
+                        <!-- Book Now CTA -->
+                        <div class="px-6 pb-6 pt-3 mt-auto">
+                            <a href="{% url 'booking' %}?service={{ service.id }}" class="block w-full text-center bg-brand-border hover:bg-brand-gold hover:text-brand-dark text-brand-gold font-semibold text-xs py-2.5 rounded-lg border border-brand-gold/20 hover:border-transparent transition-all">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Empty State -->
+        <div class="text-center py-20 bg-brand-card/20 rounded-2xl border border-brand-border max-w-lg mx-auto">
+            <div class="w-16 h-16 rounded-full bg-slate-850 flex items-center justify-center text-slate-500 text-3xl mx-auto mb-4">
+                <i class="fa-regular fa-folder-open"></i>
+            </div>
+            <h3 class="text-lg font-serif font-semibold text-slate-200">No Services Found</h3>
+            <p class="text-sm text-slate-500 mt-2">Our service database seems empty. Please run the seeding script using the dashboard or control command.</p>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Custom Notice section -->
+<section class="py-8 max-w-5xl mx-auto px-4 sm:px-6 mb-12">
+    <div class="bg-brand-card/20 border border-slate-800 rounded-xl p-6 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-start space-x-3">
+            <i class="fa-solid fa-circle-info text-brand-gold mt-1 text-base flex-shrink-0"></i>
+            <div>
+                <p class="text-slate-200 font-medium">Custom Grooming & Packages</p>
+                <p class="font-light mt-0.5">Need a custom makeover, corporate booking, or bridal service packages not listed? We can personalize services for your needs.</p>
+            </div>
+        </div>
+        <a href="{% url 'contact' %}" class="bg-brand-border text-slate-200 border border-slate-700 px-4 py-2 rounded-lg text-xs font-semibold hover:border-brand-gold hover:text-white transition-all whitespace-nowrap">
+            Inquire Now
+        </a>
+    </div>
+</section>
+{% endblock %}

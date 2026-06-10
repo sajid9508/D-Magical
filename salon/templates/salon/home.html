@@ -1,0 +1,247 @@
+{% extends 'salon/base.html' %}
+{% load static %}
+
+{% block title %}Home | 'D' MAGICAL Family Salon - Hair, Beauty & Spa Bangalore{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.9)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&auto=format&fit=crop&q=80');">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark/95"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 animate-fade-in-up">
+        <span class="text-brand-gold font-serif text-lg md:text-xl italic tracking-wider block mb-3">Welcome to Luxury Grooming</span>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white mb-6 leading-tight">
+            Where Grooming Meets <br class="hidden sm:inline">
+            <span class="text-gradient-gold">Pure Magic</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed font-light">
+            Indulge in a premium salon experience at Basavanagara, Bangalore. Our certified master stylists deliver tailored haircuts, stunning colors, glowing skin facials, and elite bridal makeups.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{% url 'booking' %}" class="w-full sm:w-auto bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.5)] transition-all duration-300 transform hover:-translate-y-1 text-center">
+                Book Appointment
+            </a>
+            <a href="{% url 'services' %}" class="w-full sm:w-auto border border-slate-600 text-white font-medium px-8 py-4 rounded-full hover:bg-brand-border hover:border-brand-gold transition-all duration-300 text-center">
+                View Services Menu
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Information Bar -->
+<section class="relative z-20 max-w-6xl mx-auto px-4 -mt-16 sm:-mt-10 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-brand-card/90 backdrop-blur border border-brand-border p-6 rounded-2xl shadow-2xl">
+        <div class="flex items-center space-x-4 p-4 border-b md:border-b-0 md:border-r border-slate-800">
+            <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-400 uppercase tracking-widest">Call & Book</p>
+                <a href="tel:9740637692" class="text-slate-100 font-semibold hover:text-brand-gold">97406 37692</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4 p-4 border-b md:border-b-0 md:border-r border-slate-800">
+            <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-400 uppercase tracking-widest">Our Location</p>
+                <p class="text-slate-200 text-sm font-medium">Basavanagara, Bangalore</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4 p-4">
+            <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <p class="text-xs text-slate-400 uppercase tracking-widest">Operating Hours</p>
+                <p class="text-slate-200 text-sm font-medium">Open 10:00 AM - 08:30 PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Visual Column -->
+        <div class="relative group">
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-gold to-amber-700 opacity-20 blur group-hover:opacity-35 transition duration-1000"></div>
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a3ef?w=600&auto=format&fit=crop&q=80" alt="Hair styling at salon" class="w-full h-[450px] object-cover object-center transform hover:scale-105 transition-transform duration-700">
+            </div>
+            <!-- Decorative Badge -->
+            <div class="absolute -bottom-6 -right-6 bg-brand-gold text-brand-dark p-6 rounded-2xl shadow-xl hidden sm:block">
+                <p class="text-3xl font-bold font-serif">100%</p>
+                <p class="text-xs font-semibold uppercase tracking-wider">Premium Service</p>
+            </div>
+        </div>
+
+        <!-- Narrative Column -->
+        <div class="space-y-6">
+            <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold">About 'D' MAGICAL</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white leading-tight">
+                Crafting Elegance, Confidence, & Style Since Inception
+            </h2>
+            <p class="text-slate-300 leading-relaxed font-light">
+                At 'D' MAGICAL Family Salon, we believe your hair and skin deserve the highest quality attention. We have established ourselves as a favorite neighborhood retreat in Basavanagara, Bangalore.
+            </p>
+            <p class="text-slate-300 leading-relaxed font-light">
+                Whether you need a simple trim, a therapeutic deep massage, or a magical makeover for your wedding day, our trained stylists bring years of professional experience, using only top-tier organic and tested products.
+            </p>
+            <div class="grid grid-cols-2 gap-4 pt-4 text-sm font-semibold">
+                <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-gold"></i> <span>Family Grooming</span></div>
+                <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-gold"></i> <span>Expert Stylists</span></div>
+                <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-gold"></i> <span>Premium Products</span></div>
+                <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-gold"></i> <span>UPI & COD Accepted</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Services Section -->
+<section class="py-16 bg-black/40 border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold">Our Specialties</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">Highlighted Services</h2>
+            <p class="text-slate-400 mt-3 font-light">Explore a few of our clients' favorite treatments. Check our full menu for more options.</p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for service in featured_services %}
+            <div class="bg-brand-card/60 rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-gold/40 transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <!-- Image -->
+                    <div class="h-56 overflow-hidden relative">
+                        {% if service.image_url %}
+                        <img src="{{ service.image_url }}" alt="{{ service.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                        {% else %}
+                        <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                            <i class="fa-solid fa-spa text-4xl"></i>
+                        </div>
+                        {% endif %}
+                        <span class="absolute top-4 right-4 bg-brand-dark/80 backdrop-blur text-brand-gold text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                            {{ service.get_category_display }}
+                        </span>
+                    </div>
+                    <!-- Details -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-serif font-semibold text-slate-100 group-hover:text-brand-gold transition-colors">{{ service.name }}</h3>
+                            <span class="text-brand-gold font-semibold text-lg">₹{{ service.price|floatformat:0 }}</span>
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed line-clamp-3 mb-4 font-light">
+                            {{ service.description }}
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action Footer -->
+                <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-850 mt-auto">
+                    <span class="text-xs text-slate-500"><i class="fa-regular fa-clock mr-1 text-brand-gold"></i> {{ service.duration_minutes }} Mins</span>
+                    <a href="{% url 'booking' %}?service={{ service.id }}" class="bg-brand-border hover:bg-brand-gold hover:text-brand-dark text-brand-gold text-xs font-bold px-4 py-2 rounded-lg border border-brand-gold/30 hover:border-transparent transition-all">
+                        Book Service
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12 text-slate-500">
+                <i class="fa-regular fa-folder-open text-4xl mb-3"></i>
+                <p>No featured services loaded yet. Please run seeding script!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="{% url 'services' %}" class="inline-flex items-center space-x-2 text-brand-gold font-semibold hover:text-brand-goldlight transition-colors">
+                <span>View Full Menu & Pricing</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold">Testimonials</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">What Our Customers Say</h2>
+        <p class="text-slate-400 mt-3 font-light">We love making our clients feel magical. Read reviews from people who visit us regularly.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="bg-brand-card/45 border border-slate-800 p-6 rounded-2xl relative">
+            <span class="text-brand-gold/15 text-7xl font-serif absolute top-4 right-4">“</span>
+            <div class="flex items-center space-x-1 mb-4 text-brand-gold text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-slate-350 leading-relaxed mb-6 font-light">
+                "Absolutely loved my global hair coloring and haircut here! The staff took their time to understand what I wanted and executed it perfectly. Highly recommended!"
+            </p>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm text-slate-200">A</div>
+                <div>
+                    <h4 class="text-sm font-semibold text-slate-200">Ananya R.</h4>
+                    <p class="text-xs text-slate-500">Basavanagara, Bangalore</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-brand-card/45 border border-slate-800 p-6 rounded-2xl relative">
+            <span class="text-brand-gold/15 text-7xl font-serif absolute top-4 right-4">“</span>
+            <div class="flex items-center space-x-1 mb-4 text-brand-gold text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-slate-350 leading-relaxed mb-6 font-light">
+                "Fantastic service! I got their Groom Styling Package for my wedding. The hair styling and facial glow made a massive difference. Excellent quality for reasonable prices."
+            </p>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm text-slate-200">K</div>
+                <div>
+                    <h4 class="text-sm font-semibold text-slate-200">Karthik S.</h4>
+                    <p class="text-xs text-slate-500">Marathahalli, Bangalore</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-brand-card/45 border border-slate-800 p-6 rounded-2xl relative">
+            <span class="text-brand-gold/15 text-7xl font-serif absolute top-4 right-4">“</span>
+            <div class="flex items-center space-x-1 mb-4 text-brand-gold text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star-half-stroke"></i>
+            </div>
+            <p class="text-sm text-slate-350 leading-relaxed mb-6 font-light">
+                "Great hygiene and clean salon environment. The deep tissue body spa massage was extremely relaxing and relieved my back tension. Definite repeat customer here!"
+            </p>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm text-slate-200">M</div>
+                <div>
+                    <h4 class="text-sm font-semibold text-slate-200">Meera Sen</h4>
+                    <p class="text-xs text-slate-500">Indiranagar, Bangalore</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Banner -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <div class="bg-gradient-to-r from-brand-gold to-brand-golddark rounded-3xl p-8 sm:p-12 text-brand-dark text-center relative overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=500&auto=format&fit=crop&q=80');"></div>
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold leading-tight">Ready for Your Transformation?</h2>
+            <p class="text-brand-dark/90 font-medium">
+                Book your preferred slot online in just 2 minutes. Receive confirmation via email, choose flexible payment options like instant UPI scan or cash on delivery.
+            </p>
+            <div class="pt-4">
+                <a href="{% url 'booking' %}" class="inline-block bg-brand-dark text-brand-gold font-bold px-8 py-4 rounded-full shadow-xl hover:bg-slate-900 transition-all duration-300">
+                    Book Now & Save Time
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

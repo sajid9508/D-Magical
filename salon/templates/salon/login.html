@@ -1,0 +1,88 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Sign In | 'D' MAGICAL Family Salon{% endblock %}
+
+{% block content %}
+<section class="py-20 flex items-center justify-center min-h-[75vh] px-4">
+    <div class="max-w-md w-full bg-brand-card/30 backdrop-blur-xl border border-brand-border p-8 rounded-2xl shadow-2xl relative overflow-hidden animate-fade-in-up">
+        
+        <!-- Decorative subtle background glows -->
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-brand-golddark/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center space-y-2 mb-8">
+            <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold block">Staff & Owner Portal</span>
+            <h2 class="text-3xl font-serif font-bold text-white">Welcome Back</h2>
+            <p class="text-slate-400 text-xs font-light">
+                Sign in with your Email Address or Phone Number
+            </p>
+        </div>
+
+        <form method="POST" class="space-y-6 relative z-10">
+            {% csrf_token %}
+            
+            <!-- Email or Phone Number Input -->
+            <div class="space-y-2">
+                <label for="username" class="block text-sm font-medium text-slate-350">
+                    <i class="fa-regular fa-envelope mr-1.5 text-brand-gold"></i> Email or Phone Number
+                </label>
+                <input type="text" name="username" id="username" required
+                       class="w-full px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-gold transition-all duration-300 placeholder:text-slate-600"
+                       placeholder="e.g. owner@dmagicalsalon.com or 9740637692">
+            </div>
+
+            <!-- Password Input -->
+            <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                    <label for="password" class="block text-sm font-medium text-slate-350">
+                        <i class="fa-solid fa-lock mr-1.5 text-brand-gold"></i> Password
+                    </label>
+                </div>
+                <div class="relative">
+                    <input type="password" name="password" id="password" required
+                           class="w-full px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-gold transition-all duration-300 placeholder:text-slate-600"
+                           placeholder="••••••••">
+                    <button type="button" onclick="togglePasswordVisibility()" 
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-brand-gold transition-colors">
+                        <i id="eye-icon" class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold py-3.5 rounded-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                    Sign In
+                </button>
+            </div>
+        </form>
+
+        <!-- Redirect to Registration -->
+        <div class="mt-6 text-center text-xs text-slate-500 relative z-10">
+            <p>
+                Don't have an account? 
+                <a href="{% url 'signup' %}" class="text-brand-gold hover:text-brand-goldlight font-semibold transition-colors ml-1">
+                    Sign Up Now
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eye-icon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+</script>
+{% endblock %}

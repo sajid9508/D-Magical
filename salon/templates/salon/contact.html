@@ -1,0 +1,141 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Contact Us | 'D' MAGICAL Family Salon Basavanagara Bangalore{% endblock %}
+
+{% block content %}
+<!-- Subheader Banner -->
+<section class="py-12 bg-gradient-to-b from-brand-card/40 to-transparent border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl sm:text-5xl font-serif font-bold text-white mb-3">Connect With Us</h1>
+        <p class="max-w-xl mx-auto text-slate-400 text-sm sm:text-base font-light">
+            Have questions about our services or need to customize a special grooming package? Send us a message or call us directly.
+        </p>
+    </div>
+</section>
+
+<!-- Contact Details & Form Section -->
+<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        
+        <!-- Column 1: Info & Map -->
+        <div class="space-y-8">
+            <div class="space-y-4">
+                <span class="text-brand-gold font-serif text-sm uppercase tracking-widest font-semibold">Salon Information</span>
+                <h2 class="text-3xl font-serif font-bold text-white leading-tight">Visit The Magic</h2>
+                <p class="text-slate-400 text-sm font-light leading-relaxed">
+                    We are conveniently located in Basavanagara, Bangalore. Walk-ins are welcome, but pre-booking guarantees your preferred slot.
+                </p>
+            </div>
+
+            <!-- Detail Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-brand-card/20 border border-slate-850 p-5 rounded-xl flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg flex-shrink-0">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-350 text-xs font-semibold uppercase tracking-wider">Call Directly</h4>
+                        <p class="text-slate-100 font-semibold mt-1"><a href="tel:9740637692" class="hover:text-brand-gold transition-colors">97406 37692</a></p>
+                    </div>
+                </div>
+                <div class="bg-brand-card/20 border border-slate-850 p-5 rounded-xl flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg flex-shrink-0">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-350 text-xs font-semibold uppercase tracking-wider">Email Us</h4>
+                        <p class="text-slate-100 font-semibold mt-1 text-sm">info@dmagicalsalon.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operating Hours card -->
+            <div class="bg-brand-card/30 border border-brand-border p-6 rounded-xl space-y-4">
+                <h3 class="text-slate-100 font-serif font-bold flex items-center">
+                    <i class="fa-solid fa-clock text-brand-gold mr-3"></i> Operating Hours
+                </h3>
+                <div class="grid grid-cols-2 gap-4 text-sm font-light text-slate-350">
+                    <div>
+                        <p class="text-slate-450 uppercase tracking-widest text-xs font-medium">Monday - Friday</p>
+                        <p class="text-slate-200 mt-1 font-semibold">10:00 AM - 08:30 PM</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-450 uppercase tracking-widest text-xs font-medium">Saturday - Sunday</p>
+                        <p class="text-slate-200 mt-1 font-semibold">09:00 AM - 09:00 PM</p>
+                    </div>
+                </div>
+                <div class="border-t border-slate-800 pt-3 text-xs flex justify-between text-brand-gold">
+                    <span>Weekly Off:</span>
+                    <span class="font-bold">Every Tuesday</span>
+                </div>
+            </div>
+
+            <!-- Embedded Google Maps Frame -->
+            <div class="rounded-xl overflow-hidden border border-brand-border h-[280px] shadow-lg relative bg-slate-900">
+                <!-- Google Maps Embed centered on Basavanagara, Bangalore -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1672322304896!2d77.68412351482189!3d12.961168990862747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m3!1d156!2d77.6863122!3d12.961169!5m2!1sen!2sin" 
+                        class="w-full h-full border-0 grayscale invert opacity-75 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Column 2: Inquiry Form -->
+        <div class="bg-brand-card/40 border border-brand-border rounded-2xl p-6 sm:p-10 shadow-2xl space-y-6">
+            <div class="space-y-2">
+                <h2 class="text-2xl font-serif font-bold text-white flex items-center">
+                    <i class="fa-solid fa-paper-plane text-brand-gold mr-3 text-lg"></i> Drop Us A Line
+                </h2>
+                <p class="text-slate-400 text-sm font-light">
+                    Fill out this form and our support executive will revert back within 24 hours.
+                </p>
+            </div>
+
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Your Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <p class="text-red-400 text-xs mt-1">{{ form.name.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Email Address</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <p class="text-red-400 text-xs mt-1">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Phone Number</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}
+                        <p class="text-red-400 text-xs mt-1">{{ form.phone.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.message.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Your Inquiry</label>
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                    <p class="text-red-400 text-xs mt-1">{{ form.message.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold py-3.5 rounded-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all">
+                        Send Inquiry <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

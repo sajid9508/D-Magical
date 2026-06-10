@@ -1,0 +1,80 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}UPI Scan & Pay | 'D' MAGICAL Family Salon{% endblock %}
+
+{% block content %}
+<section class="py-12 max-w-xl mx-auto px-4">
+    <!-- Payment Container Card -->
+    <div class="bg-brand-card/40 border border-brand-border rounded-2xl shadow-2xl p-6 sm:p-10 text-center space-y-6">
+        
+        <!-- Header -->
+        <div>
+            <div class="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-2xl mx-auto mb-4">
+                <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-serif font-bold text-white">Scan & Pay via UPI</h1>
+            <p class="text-slate-400 text-xs sm:text-sm font-light mt-1">
+                Scan the QR code below using GPay, PhonePe, Paytm, or any BHIM UPI app to pay.
+            </p>
+        </div>
+
+        <!-- Booking & Price Summary -->
+        <div class="bg-slate-900/60 rounded-xl p-4 border border-slate-800 text-left space-y-3 text-sm">
+            <div class="flex justify-between">
+                <span class="text-slate-400">Service:</span>
+                <span class="text-slate-200 font-semibold">{{ appointment.service.name }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-slate-400">Date & Time:</span>
+                <span class="text-slate-200 font-semibold">{{ appointment.date }} at {{ appointment.time }}</span>
+            </div>
+            <div class="border-t border-slate-800 pt-3 flex justify-between items-center text-base">
+                <span class="text-slate-350">Total Amount:</span>
+                <span class="text-brand-gold font-bold text-xl">₹{{ appointment.service.price|floatformat:2 }}</span>
+            </div>
+        </div>
+
+        <!-- Generated QR Code (using API qrserver) -->
+        <div class="bg-white p-4 rounded-xl inline-block shadow-lg mx-auto border-2 border-brand-gold/30">
+            <!-- Renders a real UPI payment QR code which can be scanned! -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ upi_uri|urlencode }}" 
+                 alt="UPI Payment QR Code" 
+                 class="w-[200px] h-[200px]" />
+        </div>
+
+        <!-- UPI ID Info -->
+        <div class="space-y-1">
+            <p class="text-xs text-slate-500">UPI ID for manual payment:</p>
+            <p class="text-sm text-slate-300 font-mono font-medium">{{ upi_id }}</p>
+        </div>
+
+        <!-- Supported Apps Icons -->
+        <div class="pt-2">
+            <p class="text-xs text-slate-500 uppercase tracking-widest mb-3">Supported UPI Apps</p>
+            <div class="flex items-center justify-center space-x-6 text-2xl text-slate-400">
+                <span class="hover:text-sky-400 transition-colors" title="Paytm"><i class="fa-solid fa-wallet"></i><span class="text-xs font-semibold block mt-1">Paytm</span></span>
+                <span class="hover:text-purple-400 transition-colors" title="PhonePe"><i class="fa-solid fa-mobile-screen-button"></i><span class="text-xs font-semibold block mt-1">PhonePe</span></span>
+                <span class="hover:text-emerald-400 transition-colors" title="Google Pay"><i class="fa-brands fa-google"></i><span class="text-xs font-semibold block mt-1">GPay</span></span>
+            </div>
+        </div>
+
+        <!-- Confirmation Form -->
+        <form method="POST" class="pt-4 border-t border-slate-850">
+            {% csrf_token %}
+            <p class="text-xs text-slate-400 mb-4 font-light leading-relaxed">
+                Once payment is done, click the button below. The Salon Administrator will verify your payment and send a confirmation message.
+            </p>
+            <button type="submit" class="w-full bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold py-3.5 rounded-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all">
+                I Have Paid & Confirm Slot
+            </button>
+        </form>
+
+        <!-- Cancel Options -->
+        <div class="pt-2 text-xs">
+            <a href="{% url 'booking' %}" class="text-slate-550 hover:text-red-400 transition-colors">
+                Cancel & Change Booking Details
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,290 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Book Appointment | 'D' MAGICAL Family Salon{% endblock %}
+
+{% block content %}
+<section class="py-12 bg-gradient-to-b from-brand-card/40 to-transparent border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl sm:text-5xl font-serif font-bold text-white mb-3">Book Your Magical Experience</h1>
+        <p class="max-w-xl mx-auto text-slate-400 text-sm sm:text-base font-light">
+            Fill out our secure booking form. Select your service, date, and preferred payment option to confirm your slot.
+        </p>
+    </div>
+</section>
+
+<section class="py-12 max-w-3xl mx-auto px-4">
+    <!-- Step Wizard Progress Bar -->
+    <div class="mb-10">
+        <div class="flex items-center justify-between text-xs sm:text-sm font-semibold tracking-wider uppercase text-slate-500">
+            <div id="badge-step-1" class="text-brand-gold flex items-center space-x-2">
+                <span class="w-8 h-8 rounded-full border border-brand-gold flex items-center justify-center bg-brand-gold/10">1</span>
+                <span>Personal</span>
+            </div>
+            <div class="h-[1px] bg-slate-800 flex-grow mx-4"></div>
+            <div id="badge-step-2" class="flex items-center space-x-2">
+                <span class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center">2</span>
+                <span>Details</span>
+            </div>
+            <div class="h-[1px] bg-slate-800 flex-grow mx-4"></div>
+            <div id="badge-step-3" class="flex items-center space-x-2">
+                <span class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center">3</span>
+                <span>Payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Card -->
+    <div class="bg-brand-card/40 border border-brand-border rounded-2xl shadow-2xl p-6 sm:p-10 relative overflow-hidden">
+        <form method="POST" id="booking-wizard-form" class="space-y-8">
+            {% csrf_token %}
+
+            <!-- STEP 1: Personal Information -->
+            <div id="step-1" class="step-container space-y-6">
+                <h2 class="text-2xl font-serif font-semibold text-slate-100 flex items-center">
+                    <i class="fa-solid fa-user text-brand-gold mr-3 text-lg"></i> Contact Details
+                </h2>
+                <p class="text-slate-400 text-sm font-light">
+                    Please provide your contact details. We will send appointment confirmations and reminders to these addresses.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="{{ form.customer_name.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Full Name</label>
+                        {{ form.customer_name }}
+                        {% if form.customer_name.errors %}
+                        <p class="text-red-400 text-xs mt-1">{{ form.customer_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="{{ form.customer_email.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Email Address</label>
+                            {{ form.customer_email }}
+                            {% if form.customer_email.errors %}
+                            <p class="text-red-400 text-xs mt-1">{{ form.customer_email.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.customer_phone.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Phone Number</label>
+                            {{ form.customer_phone }}
+                            {% if form.customer_phone.errors %}
+                            <p class="text-red-400 text-xs mt-1">{{ form.customer_phone.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button type="button" id="btn-next-1" class="bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold px-6 py-3 rounded-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all">
+                        Continue to Schedule <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Service & Schedule Details -->
+            <div id="step-2" class="step-container hidden space-y-6">
+                <h2 class="text-2xl font-serif font-semibold text-slate-100 flex items-center">
+                    <i class="fa-solid fa-calendar-days text-brand-gold mr-3 text-lg"></i> Service & Schedule
+                </h2>
+                <p class="text-slate-400 text-sm font-light">
+                    Select the service you desire, and choose a date and time slot that fits your schedule.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="{{ form.service.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Salon Service</label>
+                        {{ form.service }}
+                        {% if form.service.errors %}
+                        <p class="text-red-400 text-xs mt-1">{{ form.service.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="{{ form.date.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Preferred Date</label>
+                            {{ form.date }}
+                            {% if form.date.errors %}
+                            <p class="text-red-400 text-xs mt-1">{{ form.date.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.time.id_for_label }}" class="block text-sm font-medium text-slate-350 mb-2">Preferred Time</label>
+                            {{ form.time }}
+                            {% if form.time.errors %}
+                            <p class="text-red-400 text-xs mt-1">{{ form.time.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-between">
+                    <button type="button" id="btn-prev-2" class="border border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold px-5 py-3 rounded-lg transition-all">
+                        <i class="fa-solid fa-arrow-left mr-2 text-xs"></i> Back
+                    </button>
+                    <button type="button" id="btn-next-2" class="bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold px-6 py-3 rounded-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all">
+                        Continue to Payment <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Payment Selection -->
+            <div id="step-3" class="step-container hidden space-y-6">
+                <h2 class="text-2xl font-serif font-semibold text-slate-100 flex items-center">
+                    <i class="fa-solid fa-credit-card text-brand-gold mr-3 text-lg"></i> Payment Integration
+                </h2>
+                <p class="text-slate-400 text-sm font-light">
+                    Choose your payment method. Scan to pay instantly with UPI or pay in cash at the salon.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Cash on Delivery Option -->
+                    <div class="relative">
+                        <input type="radio" name="payment_method" id="pay-cod" value="COD" class="peer hidden" checked>
+                        <label for="pay-cod" class="flex flex-col p-6 rounded-xl border border-slate-800 bg-slate-950/20 hover:border-slate-700 peer-checked:border-brand-gold cursor-pointer transition-all duration-300 h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-slate-100 font-semibold flex items-center">
+                                    <i class="fa-solid fa-money-bill-wave text-green-500 mr-2 text-lg"></i> Pay at Salon (COD)
+                                </span>
+                                <span class="w-4 h-4 rounded-full border border-slate-700 flex items-center justify-center peer-checked:bg-brand-gold">
+                                    <span class="w-2 h-2 rounded-full bg-brand-dark hidden check-indicator"></span>
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-400 font-light leading-relaxed">
+                                Book your slot now and pay directly at the salon counter via Cash, Card, or UPI after receiving your services. Perfect for convenience.
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- UPI Instant Payment -->
+                    <div class="relative">
+                        <input type="radio" name="payment_method" id="pay-upi" value="UPI" class="peer hidden">
+                        <label for="pay-upi" class="flex flex-col p-6 rounded-xl border border-slate-800 bg-slate-950/20 hover:border-slate-700 peer-checked:border-brand-gold cursor-pointer transition-all duration-300 h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-slate-100 font-semibold flex items-center">
+                                    <i class="fa-solid fa-qrcode text-brand-gold mr-2 text-lg"></i> UPI Scan & Pay
+                                </span>
+                                <span class="w-4 h-4 rounded-full border border-slate-700 flex items-center justify-center peer-checked:bg-brand-gold">
+                                    <span class="w-2 h-2 rounded-full bg-brand-dark hidden check-indicator"></span>
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-400 font-light leading-relaxed">
+                                Pay instantly from your mobile. Choose this option to scan a secure QR code using Paytm, GPay, or PhonePe. Confirm immediately.
+                            </p>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-6 flex justify-between">
+                    <button type="button" id="btn-prev-3" class="border border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold px-5 py-3 rounded-lg transition-all">
+                        <i class="fa-solid fa-arrow-left mr-2 text-xs"></i> Back
+                    </button>
+                    <button type="submit" id="btn-submit" class="bg-gradient-to-r from-brand-gold to-brand-golddark text-brand-dark font-bold px-8 py-3.5 rounded-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all">
+                        Confirm Appointment <i class="fa-solid fa-check ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Form step variables
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const step3 = document.getElementById('step-3');
+        
+        const badge1 = document.getElementById('badge-step-1');
+        const badge2 = document.getElementById('badge-step-2');
+        const badge3 = document.getElementById('badge-step-3');
+        
+        const next1 = document.getElementById('btn-next-1');
+        const next2 = document.getElementById('btn-next-2');
+        const prev2 = document.getElementById('btn-prev-2');
+        const prev3 = document.getElementById('btn-prev-3');
+
+        // Simple Client Side Step Validations
+        function validateStep1() {
+            const name = document.querySelector('[name="customer_name"]').value.trim();
+            const email = document.querySelector('[name="customer_email"]').value.trim();
+            const phone = document.querySelector('[name="customer_phone"]').value.trim();
+
+            if (!name) {
+                alert("Please enter your name.");
+                return false;
+            }
+            if (!email || !email.includes('@')) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (!phone || phone.length < 10) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+            return true;
+        }
+
+        function validateStep2() {
+            const service = document.querySelector('[name="service"]').value;
+            const date = document.querySelector('[name="date"]').value;
+            const time = document.querySelector('[name="time"]').value;
+
+            if (!service) {
+                alert("Please select a service.");
+                return false;
+            }
+            if (!date) {
+                alert("Please select a preferred date.");
+                return false;
+            }
+            if (!time) {
+                alert("Please select a preferred time.");
+                return false;
+            }
+            return true;
+        }
+
+        // Stepper Navigation
+        next1.addEventListener('click', () => {
+            if (validateStep1()) {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                
+                badge2.classList.add('text-brand-gold');
+                badge2.querySelector('span').classList.add('border-brand-gold', 'bg-brand-gold/10');
+            }
+        });
+
+        prev2.addEventListener('click', () => {
+            step2.classList.add('hidden');
+            step1.classList.remove('hidden');
+            
+            badge2.classList.remove('text-brand-gold');
+            badge2.querySelector('span').classList.remove('border-brand-gold', 'bg-brand-gold/10');
+        });
+
+        next2.addEventListener('click', () => {
+            if (validateStep2()) {
+                step2.classList.add('hidden');
+                step3.classList.remove('hidden');
+                
+                badge3.classList.add('text-brand-gold');
+                badge3.querySelector('span').classList.add('border-brand-gold', 'bg-brand-gold/10');
+            }
+        });
+
+        prev3.addEventListener('click', () => {
+            step3.classList.add('hidden');
+            step2.classList.remove('hidden');
+            
+            badge3.classList.remove('text-brand-gold');
+            badge3.querySelector('span').classList.remove('border-brand-gold', 'bg-brand-gold/10');
+        });
+        
+        // Auto-select date in UI as today
+        const dateInput = document.querySelector('[name="date"]');
+        if (dateInput && !dateInput.value) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

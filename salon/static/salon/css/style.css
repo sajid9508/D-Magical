@@ -1,0 +1,130 @@
+/* D MAGICAL Salon Custom CSS Styles */
+
+/* ---------------------------------------------------- */
+/* 1. Global Themes & Layout Extensions                 */
+/* ---------------------------------------------------- */
+:root {
+    --gold: #D4AF37;
+    --gold-light: #F3E5AB;
+    --gold-dark: #AA7C11;
+    --dark-bg: #0B0F19;
+    --card-bg: #161F30;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif-header {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ---------------------------------------------------- */
+/* 2. Glassmorphism & Card Design                       */
+/* ---------------------------------------------------- */
+.glass-panel {
+    background: rgba(22, 31, 48, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gold-border-glow {
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
+
+.gold-border-glow:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+/* ---------------------------------------------------- */
+/* 3. Text and Accent Gradients                         */
+/* ---------------------------------------------------- */
+.text-gradient-gold {
+    background: linear-gradient(135deg, #FFF 0%, #D4AF37 50%, #AA7C11 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+}
+
+.bg-gradient-gold-dark {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+}
+
+/* Custom Checkbox/Radio Styling */
+input[type="radio"]:checked + label {
+    border-color: var(--gold);
+    background-color: rgba(212, 175, 55, 0.05);
+}
+
+/* ---------------------------------------------------- */
+/* 4. Animations & Transitions                          */
+/* ---------------------------------------------------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Step transition in booking */
+.step-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------- */
+/* 5. Custom Scrollbar                                  */
+/* ---------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
+
+/* Custom interactive active states */
+.tab-active {
+    border-bottom: 2px solid var(--gold);
+    color: var(--gold);
+}
+
+/* ---------------------------------------------------- */
+/* 6. Form Styling                                      */
+/* ---------------------------------------------------- */
+.form-input-dark {
+    background-color: #0F172A;
+    border: 1px solid #1E293B;
+    color: #F8FAFC;
+    transition: all 0.3s ease;
+}
+
+.form-input-dark:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    outline: none;
+}
