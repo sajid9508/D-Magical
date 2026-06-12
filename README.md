@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 'D' MAGICAL Family Salon
 
 A premium, luxury family salon booking and management web application built with Python, Django, Tailwind CSS, and SQLite. This application allows clients to view beauty and grooming services, book instant appointments, scan simulated UPI payment QR codes, and provides owners with a secure, login-protected management dashboard.
@@ -95,3 +96,7 @@ To verify all models, forms, custom login handlers, and route protections:
 python manage.py test
 ```
 *(All 14 tests should run and pass successfully)*
+=======
+# D-Magical
+"D' MAGICAL Family Salon" is a salon booking and management web application built with Python, Django, Tailwind CSS, and SQLite. It allows customers to book appointments and make payments, while salon owners can manage bookings, track payments, view business insights, and handle customer inquiries through a secure dashboard.
+>>>>>>> 8c4d903583ca59fcc9b1829e01a6e59a2e0d80ea
