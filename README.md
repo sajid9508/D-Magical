@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 'D' MAGICAL Family Salon
 
 A premium, luxury family salon booking and management web application built with Python, Django, Tailwind CSS, and SQLite. This application allows clients to view beauty and grooming services, book instant appointments, scan simulated UPI payment QR codes, and provides owners with a secure, login-protected management dashboard.
